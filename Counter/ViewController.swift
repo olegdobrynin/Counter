@@ -2,12 +2,12 @@ import UIKit
 import Foundation
 
 class ViewController: UIViewController {
-    @IBOutlet weak var countLabel: UILabel!
-    @IBOutlet weak var incrementButton: UIButton!
-    @IBOutlet weak var decrementButton: UIButton!
-    @IBOutlet weak var clearButton: UIButton!
-    @IBOutlet weak var historyTextView: UITextView!
-    var count: Int = 0
+    @IBOutlet weak private var countLabel: UILabel!
+    @IBOutlet weak private var incrementButton: UIButton!
+    @IBOutlet weak private var decrementButton: UIButton!
+    @IBOutlet weak private var clearButton: UIButton!
+    @IBOutlet weak private var historyTextView: UITextView!
+    private var count: Int = 0
     
 
     override func viewDidLoad() {
@@ -19,12 +19,12 @@ class ViewController: UIViewController {
         updateCountLabel()
     }
 
-    @IBAction func increment(_ sender: Any) {
+    @IBAction private func increment(_ sender: Any) {
         count += 1
         updateCountLabel()
         addHistory(action: "значение изменено на +1")
     }
-    @IBAction func decrement(_ sender: Any) {
+    @IBAction private func decrement(_ sender: Any) {
         if count > 0 {
             count -= 1
             updateCountLabel()
@@ -34,7 +34,7 @@ class ViewController: UIViewController {
         }
         
     }
-    @IBAction func clear(_ sender: Any) {
+    @IBAction private func clear(_ sender: Any) {
         count = 0
         updateCountLabel()
         addHistory(action: "значение сброшено")
@@ -51,7 +51,7 @@ class ViewController: UIViewController {
         let date = Date()
         let dateString = dateFormatter.string(from: date)
         
-        historyTextView.text = historyTextView.text + "\n[\(dateString)]: " + action
+        historyTextView.text += "\n[\(dateString)]: " + action
     }
 }
 
